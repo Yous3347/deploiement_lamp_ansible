@@ -1,0 +1,6 @@
+---
+# handlers file for roles/bind9
+- name: Redémarrer Bind9
+  service:
+    name: bind9
+    state: restarted

@@ -1,0 +1,14 @@
+---
+# tasks file for roles/wordpress
+- name: Installer WordPress et ses dépendances
+  apt:
+    name:
+      - wordpress
+      - php-mysql
+    state: present
+    update_cache: yes
+
+- name: Déployer le fichier de configuration WordPress
+  template:
+    src: wp-config.php.j2
+    dest: /etc/wordpress/config-local.php

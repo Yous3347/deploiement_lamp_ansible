@@ -1,0 +1,8 @@
+[web]
+192.168.40.148 you=votre_utilisateur
+
+[database]
+192.168.40.149 you=votre_utilisateur
+
+[dns]
+192.168.40.150 you=votre_utilisateur

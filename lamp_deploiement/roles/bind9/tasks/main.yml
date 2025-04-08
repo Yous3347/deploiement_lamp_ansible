@@ -1,0 +1,18 @@
+---
+# tasks file for roles/bind9
+- name: Installer Bind9
+  apt:
+    name: bind9
+    state: present
+    update_cache: yes
+
+- name: Déployer la configuration Bind9 (fichier de zone)
+  template:
+    src: zone.conf.j2
+    dest: /etc/bind/named.conf.local
+  notify:
+    - Redémarrer Bind9
+
+- name: Créer un enregistrement DNS pointant vers l'application web
+  debug:
+    msg: "Création de l'enregistrement DNS pour l'application web (configurer le fichier de zone selon vos besoins)"

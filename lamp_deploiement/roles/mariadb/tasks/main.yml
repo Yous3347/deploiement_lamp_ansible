@@ -1,0 +1,38 @@
+---
+# tasks file for roles/mariadb
+
+- name: Installer le module MySQL pour Python 3
+  apt:
+    name: python3-mysqldb
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Installer MariaDB
+  apt:
+    name: mariadb-server
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Démarrer et activer le service MariaDB
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Créer la base de données pour l'application web
+  mysql_db:
+    name: wordpress_db
+    state: present
+  become: yes
+
+- name: Créer l'utilisateur avec accès à la base de données
+  mysql_user:
+    name: wp_user
+    password: "wp_password"  # Pour production, utilise ansible-vault pour chiffrer ce mot de passe
+    priv: "wordpress_db.*:ALL"
+    state: present
+  become: yes
+

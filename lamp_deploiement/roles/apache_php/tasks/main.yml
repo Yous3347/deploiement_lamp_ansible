@@ -1,0 +1,19 @@
+---
+# tasks file for roles/apache_php
+- name: Installer Apache et PHP
+  apt:
+    name:
+      - apache2
+      - php
+      - libapache2-mod-php
+    state: present
+    update_cache: yes
+  notify:
+    - Redémarrer Apache
+
+- name: Déployer le virtualhost pour l'application web
+  template:
+    src: virtualhost.conf.j2
+    dest: /etc/apache2/sites-available/virtualhost.conf
+  notify:
+    - Redémarrer Apache
