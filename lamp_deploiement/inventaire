@@ -1,8 +1,24 @@
-[web]
-192.168.40.148 you=votre_utilisateur
-
-[database]
-192.168.40.149 you=votre_utilisateur
-
-[dns]
-192.168.40.150 you=votre_utilisateur
+all:
+  vars:
+    
+    ansible_connection: ssh
+    ansible_ssh_private_key_file: /home/you/.ssh/id_rsa  
+   
+  children:
+    web:
+      hosts:
+        192.168.40.148:
+          ansible_user: you
+          # Variables spécifiques au serveur Web (si besoin)
+          ansible_python_interpreter: /usr/bin/python3
+    database:
+      hosts:
+        192.168.40.149:
+          ansible_user: you
+          ansible_python_interpreter: /usr/bin/python3
+         
+    dns:
+      hosts:
+        192.168.40.150:
+          ansible_user: you
+          ansible_python_interpreter: /usr/bin/python3
