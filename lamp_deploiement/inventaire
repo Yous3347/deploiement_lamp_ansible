@@ -9,7 +9,6 @@ all:
       hosts:
         192.168.40.148:
           ansible_user: you
-          # Variables spécifiques au serveur Web (si besoin)
           ansible_python_interpreter: /usr/bin/python3
     database:
       hosts:
